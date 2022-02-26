@@ -3,5 +3,6 @@ flask_restful
 flask_cors
 pymongo
 django
+flask_sqlalchemy
 
 For installing them run "pip install -r requirement.txt"
