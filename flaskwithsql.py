@@ -1,4 +1,4 @@
-from flask import Flask,jsonify
+from flask import Flask,jsonify, request,redirect,url_for
 from flask_cors import CORS
 from flask_restful import Resource,Api
 from flask_sqlalchemy import SQLAlchemy
@@ -51,6 +51,13 @@ class Users(Resource):
     def get(self):
         data=User.query.all()
         return jsonify(data)
+    def post(self):
+        body=request.get_json();
+        tempUser=User(FirstName=body['FirstName'],LastName=body['LastName'],Email=body['Email'])
+        db.session.add(tempUser)
+        db.session.commit()
+        return redirect(url_for('users'))
+        # return jsonify(body)
 
 
 class ParticularUser(Resource):
@@ -58,6 +65,7 @@ class ParticularUser(Resource):
         # data=db.session.query(User).filter(User.Email=="saikat@gmail.com").first()
         data=User.query.filter(User.Email=="saikat@gmail.com").first()
         return jsonify(data)
+
 
 api.add_resource(Hello,"/")
 api.add_resource(Access,"/access")
