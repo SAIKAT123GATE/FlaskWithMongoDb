@@ -1,0 +1,7 @@
+flask
+flask_restful
+flask_cors
+pymongo
+django
+
+For installing them run "pip install -r requirement.txt"
