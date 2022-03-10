@@ -3,6 +3,8 @@ from os import curdir
 import sqlite3
 from flask import Flask, jsonify
 from flask_restful import Resource,Api,reqparse
+
+from item import Items
 connection=sqlite3.connect("./users.db",check_same_thread=False);
 crsr = connection.cursor()
 print("connected to database")
@@ -37,5 +39,6 @@ class User(Resource):
 
 api.add_resource(Home,"/")
 api.add_resource(User,"/user")
+api.add_resource(Items,"/items");
 if __name__==("__main__"):
     app.run(port=3000,debug=True)
