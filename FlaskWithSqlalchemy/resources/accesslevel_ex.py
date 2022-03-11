@@ -1,9 +1,11 @@
 from flask import Flask
 from flask_restful import Resource,Api
 from models.accesslevel import AccessLevelModel
+from flask_jwt_extended import jwt_required
 
-
+# @jwt_required
 class AccessLevelList(Resource):
+    @jwt_required()
     def get(self):
         data=AccessLevelModel.query.all();
         items=[];
